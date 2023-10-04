@@ -17,30 +17,14 @@ fetch(apiUrl, {
        const dogs = data;
        const dogImages = [];
 
-       for (let i=0; i < 15; i++){
-        const ImageURL = data[i].image.url;
-        dogImages.push(ImageURL);
-       
-       }
-       
-       dogImages.forEach(dogImage =>{
-        const image = document.createElement("img");
-        image.setAttribute('width', 200)
-        image.setAttribute('height', 200)
-        image.classList.add("dog-image");
-        image.src = dogImage;
-        sampleTiles.append(image);
 
-       })
-
-
-        
-       
-        dogs.forEach(element=> {
+       dogs.forEach(element=> {
         const option = document.createElement("option");
         option.classList.add("dog-name");
         searchList.appendChild(option);
         option.textContent = element.name;
+        const ImageURL = element.image.url;
+        dogImages.push(ImageURL);
 
         
 
@@ -48,7 +32,20 @@ fetch(apiUrl, {
 
 
         
-    })}).catch(error => console.error("Błąd" + error))
+    })
+       
+       dogImages.forEach(dogImage =>{
+        const image = document.createElement("img");
+        image.classList.add("dog-image");
+        image.src = dogImage;
+        sampleTiles.append(image);
+
+       })
+
+       console.log(dogImages.length)
+        
+       
+        }).catch(error => console.error("Błąd" + error))
 
 
 
