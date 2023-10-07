@@ -1,62 +1,190 @@
-
-
-
 *,
 *::after,
 *::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  
 }
-body{
-    overflow-x: hidden;
-}
-
-header{
-   width: 100vw;
-   height: 500px;
-   background-image: url("/Images/v1008-25-a.jpg");
-   background-size: contain
+body {
+  overflow-x: hidden;
 }
 
-.header-content{
-    &__img{
-        width: 200px;
-        height: 200px;
-    }
-
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100vw;
+  height: 350px;
+  background-image: linear-gradient(
+      45deg,
+      rgb(95 21 13 /50%),
+      rgb(181 111 7 /51%)
+    ),
+    url("/Images/v1008-25-a.jpg");
+  background-size: contain;
 }
 
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 20px auto;
+.header-content {
+  &__img {
+    position: absolute;
+    right: 100px;
+    bottom: 30px;
+    width: 250px;
+    height: 250px;
+  }
+  &__title,
+  &__text {
+    color: rgb(31, 14, 4);
+    text-align: center;
+  }
+  &__title {
+    font-size: 80px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  &__text {
+    font-size: 35px;
+    font-weight: 600;
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(31, 14, 4);
 }
 
-.search-list{
-    width: 60vw;
+.searching {
+  margin: 30px auto;
+
+  &__input {
+    width: 30vw;
     height: 5vh;
     text-align: center;
     border-radius: 15px;
-}
-
-.sample-tiles{
-display: flex;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
-gap: 15px;
-margin-top: 30px;
-
-   
-}
-
-.dog-image{
-    width: 200px;
-    height: 200px;
+  }
+  &__submit {
+    position: relative;
+    width: 100px;
+    height: 40px;
+    padding: 5px;
+    margin: 0 10px;
     border-radius: 15px;
-    cursor: pointer
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #e6946a;
+    color: rgb(31, 14, 4);
+    border: none;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__circle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: zoom 0.3s;
+  }
+}
+@keyframes zoom {
+  to {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+.sample-tiles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: 20px;
+}
+
+.dog-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.info{
+  background-color: #ffd7ab;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+
+
+  &__card{
+    display: flex;
+    width: 40vw;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 5px solid #320d12;
+    border-radius: 10%;
+    margin-top: 100px;
+    overflow: hidden;
+    font-size: 40px;
+
+    .breed, .breedFor, .breedGroup, .lifeSpan, .temperament{
+      padding: 10px;
+      color: rgb(24, 10, 2);
+    }
+   
+
+    .breed{
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color:#5a281e;
+      color:#f2ad8a;
+      font-size: 50px;
+    }
+
+    .breedImg{
+      width: 300px;
+      height: 300px;
+
+    }
+
+    .breedFor{
+      width: 100%;
+      background-color:#863746;
+    }
+    .breedGroup{
+      width: 100%;
+      background-color: #b8555b;
+    }
+    .lifeSpan{
+      width: 100%;
+      background-color:#f18177 ;
+    }
+    .temperament{
+      width: 100%;
+      background-color: #f2ad8a;
+    }
+
+  
+
+
+
+    
+  }
+
 }

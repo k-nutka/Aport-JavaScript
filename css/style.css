@@ -11,15 +11,35 @@ body {
 }
 
 header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   width: 100vw;
-  height: 500px;
-  background-image: url("/Images/v1008-25-a.jpg");
+  height: 350px;
+  background-image: linear-gradient(45deg, rgba(95, 21, 13, 0.5), rgba(181, 111, 7, 0.51)), url("/Images/v1008-25-a.jpg");
   background-size: contain;
 }
 
 .header-content__img {
-  width: 200px;
-  height: 200px;
+  position: absolute;
+  right: 100px;
+  bottom: 30px;
+  width: 250px;
+  height: 250px;
+}
+.header-content__title, .header-content__text {
+  color: rgb(31, 14, 4);
+  text-align: center;
+}
+.header-content__title {
+  font-size: 80px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.header-content__text {
+  font-size: 35px;
+  font-weight: 600;
 }
 
 .container {
@@ -27,23 +47,60 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 20px auto;
+  background-color: rgb(31, 14, 4);
 }
 
-.search-list {
-  width: 60vw;
+.searching {
+  margin: 30px auto;
+}
+.searching__input {
+  width: 30vw;
   height: 5vh;
   text-align: center;
   border-radius: 15px;
 }
+.searching__submit {
+  position: relative;
+  width: 100px;
+  height: 40px;
+  padding: 5px;
+  margin: 0 10px;
+  border-radius: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: #e6946a;
+  color: rgb(31, 14, 4);
+  border: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+.searching__submit:focus {
+  outline: none;
+}
+.searching__circle {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: zoom 0.3s;
+}
 
+@keyframes zoom {
+  to {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
 .sample-tiles {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 30px;
+  gap: 40px;
+  margin: 20px;
 }
 
 .dog-image {
@@ -51,4 +108,57 @@ header {
   height: 200px;
   border-radius: 15px;
   cursor: pointer;
+}
+
+.info {
+  background-color: #ffd7ab;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.info__card {
+  display: flex;
+  width: 40vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 5px solid #320d12;
+  border-radius: 10%;
+  margin-top: 100px;
+  overflow: hidden;
+  font-size: 40px;
+}
+.info__card .breed, .info__card .breedFor, .info__card .breedGroup, .info__card .lifeSpan, .info__card .temperament {
+  padding: 10px;
+  color: rgb(24, 10, 2);
+}
+.info__card .breed {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #5a281e;
+  color: #f2ad8a;
+  font-size: 50px;
+}
+.info__card .breedImg {
+  width: 300px;
+  height: 300px;
+}
+.info__card .breedFor {
+  width: 100%;
+  background-color: #863746;
+}
+.info__card .breedGroup {
+  width: 100%;
+  background-color: #b8555b;
+}
+.info__card .lifeSpan {
+  width: 100%;
+  background-color: #f18177;
+}
+.info__card .temperament {
+  width: 100%;
+  background-color: #f2ad8a;
 }/*# sourceMappingURL=style.css.map */

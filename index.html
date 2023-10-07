@@ -10,33 +10,34 @@
 <body>
     <header>
         <div class="header-content">
-            <img class="header-content__img" src="/Images/dog-35553_1280.png" alt="obrazek pieska">
-
+            <img class="header-content__img" src="/Images/pug-4862083_1280.png" alt="obrazek pieska">
+            <p class="header-content__title">Aport</p>
+            <p class="header-content__text">Choose a dog and learn more about it</p>
         </div>
-      
-        
-        
     </header>
-
-
-
-
-    <h1>Wybierz psa i dowiedz się o nim więcej </h1>
-
 <main>
- <div class="container">
-        <div class="searching">
-            <select  class="search-list">
-                <option value="">Wybierz rasę psa</option>
-
-            </select>
-
-        </div>
-        <div class="sample-tiles">
-            
-        </div>
+    <div class="container">
+    <div class="searching">
+        <input list="options" class="searching__input">
+        <datalist  id="options" class="searching__list">
+          <option></option>
+        </datalist>
+        <button class="searching__submit">Submit</button>
+    </div>
+    <div class="sample-tiles"></div>
     </div> 
+    <div class="info">
+        <div class="info__card">
+            <div class="breed">Bischon freeze</div>
+            <img class="breedImg" src="Images/pug-4862083_1280.png" alt="zdjęcie rasy psa">
+            <div class="breedFor">Breed for: </div>
+            <div class="breedGroup">Breed Group</div>
+            <div class="lifeSpan"> Life span</div>
+            <div class="temperament">Temperament</div>
+       </div>
+
+    </div>
 </main>
 </body>
-<script src="code.js"></script>
+<script src="/code.js"></script>
 </html>
