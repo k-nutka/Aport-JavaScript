@@ -79,3 +79,5 @@ function showCard() {
   }
 }
 
+
+// do checkinput użyć filter lub map 
