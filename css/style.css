@@ -59,12 +59,18 @@ header {
   text-align: center;
   border-radius: 15px;
 }
+.searching__answer {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  color: #f2ad8a;
+}
 .searching__submit {
-  position: relative;
   width: 100px;
   height: 40px;
-  padding: 5px;
   margin: 0 10px;
+  position: relative;
+  padding: 5px;
   border-radius: 15px;
   font-size: 15px;
   font-weight: 600;
@@ -78,7 +84,8 @@ header {
 .searching__submit:focus {
   outline: none;
 }
-.searching__circle {
+
+.circle {
   position: absolute;
   width: 60px;
   height: 60px;
@@ -111,11 +118,27 @@ header {
 }
 
 .info {
-  background-color: #ffd7ab;
-  height: 100vh;
-  display: flex;
+  background-color: rgb(255, 215, 171);
+  display: none;
   flex-direction: column;
   align-items: center;
+}
+.info__back {
+  position: relative;
+  padding: 5px;
+  border-radius: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: #e6946a;
+  color: rgb(31, 14, 4);
+  border: none;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 30px auto;
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
 }
 .info__card {
   display: flex;
@@ -129,22 +152,44 @@ header {
   margin-top: 100px;
   overflow: hidden;
   font-size: 40px;
+  text-transform: uppercase;
 }
-.info__card .breed, .info__card .breedFor, .info__card .breedGroup, .info__card .lifeSpan, .info__card .temperament {
+.info__card .breed,
+.info__card .breedFor,
+.info__card .breedGroup,
+.info__card .lifeSpan,
+.info__card .temperament {
   padding: 10px;
   color: rgb(24, 10, 2);
 }
-.info__card .breed {
+.info__card p,
+.info__card .list {
+  text-transform: lowercase;
+}
+.info__card .list {
+  margin-bottom: 15px;
+}
+.info__card .temperament__list {
+  margin-top: 15px;
+  list-style: none;
+}
+.info__card .breedName {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
   background-color: #5a281e;
   color: #f2ad8a;
   font-size: 50px;
+  text-transform: uppercase;
 }
-.info__card .breedImg {
-  width: 300px;
-  height: 300px;
+.info__card .breedImage {
+  width: 100%;
+  height: 400px;
+}
+.info__card .breedImage__img {
+  -o-object-fit: fill;
+     object-fit: fill;
+  width: 100%;
+  height: 100%;
 }
 .info__card .breedFor {
   width: 100%;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wyszukiwarka ras psów - Aport</title>
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/ecd219a3c0.js" crossorigin="anonymous"></script>
     
 </head>
 <body>
@@ -24,17 +25,25 @@
         </datalist>
         <button class="searching__submit">Submit</button>
     </div>
+    <div class="searching-info"></div>
+      
+    </div>
+
+
     <div class="sample-tiles"></div>
     </div> 
     <div class="info">
         <div class="info__card">
-            <div class="breed">Bischon freeze</div>
-            <img class="breedImg" src="Images/pug-4862083_1280.png" alt="zdjęcie rasy psa">
-            <div class="breedFor">Breed for: </div>
-            <div class="breedGroup">Breed Group</div>
-            <div class="lifeSpan"> Life span</div>
-            <div class="temperament">Temperament</div>
+            <div class="breedName">Bischon freeze</div>
+            <div class="breedImage">
+                <img class="breedImage__img" src="Images/pug-4862083_1280.png" alt="zdjęcie rasy psa">
+            </div>
+            <div class="breedFor">Breed for:<p class="for"></p> </div>
+            <div class="breedGroup">Breed Group: <p class="group"></p></div>
+            <div class="lifeSpan"> Life span: <p class="life"></p></div>
+            <div class="temperament">Temperament: <ul class="temperament__list"></ul></div>
        </div>
+       <button class="info__back"> Back To Menu</button>
 
     </div>
 </main>

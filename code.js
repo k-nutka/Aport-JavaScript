@@ -3,13 +3,25 @@ window.onload = async () => {
 
   btn.addEventListener("click", (e) => {
     btnAnimation(e);
-    showCard();
+    setTimeout(() => {
+      checkInput();
+      clean();
+    }, 500);
   });
 };
 
 const btn = document.querySelector(".searching__submit");
 const input = document.querySelector(".searching__input");
+const backBtn = document.querySelector(".info__back");
+const dogInfo = document.querySelector(".info");
+const searching = document.querySelector(".searching");
+
 let breedArray = [];
+let chosenBreed;
+
+backBtn.addEventListener("click", (e) => {
+  window.location.reload();
+});
 
 const apiKey =
   "live_dJsh3SiYwCekpmIVtVIfO8z0lYo5PabuNpCyPDF71vAPmfofuJOI0uJnCvL6Serf";
@@ -29,22 +41,33 @@ async function getDogs() {
 
     const dogImages = [];
     breedArray = dogs;
-    console.log("WYWOŁANIE W FETCH");
 
     dogs.forEach((element) => {
       const option = document.createElement("option");
       option.classList.add("dog-name");
       searchList.appendChild(option);
       option.textContent = element.name;
-      const ImageURL = element.image.url;
+      const ImageURL = [element.image.url, element.id];
       dogImages.push(ImageURL);
     });
 
     dogImages.forEach((dogImage) => {
       const image = document.createElement("img");
       image.classList.add("dog-image");
-      image.src = dogImage;
+      image.setAttribute("id", dogImage[1]);
+      image.src = dogImage[0];
       sampleTiles.append(image);
+    });
+    let samples = document.querySelectorAll(".dog-image");
+    console.log(samples);
+
+    samples.forEach((sample) => {
+      sample.addEventListener("click", () => {
+        let sampleId = sample.getAttribute("id");
+        let clikedBreed = breedArray.find((el) => el.id === Number(sampleId));
+        chosenBreed = clikedBreed;
+        showCard();
+      });
     });
   } catch (e) {
     // (error) => console.log("Błąd" + error);
@@ -61,23 +84,81 @@ const btnAnimation = (e) => {
   const insideBtnLeft = left - btnLeftPosition;
 
   const span = document.createElement("span");
-  span.classList.add("searching__circle");
+  span.classList.add("circle");
   span.style.top = insideBtnTop + "px";
   span.style.left = insideBtnLeft + "px";
   e.target.appendChild(span);
 
   setTimeout(() => {
     span.remove();
-  }, 300);
+  }, 3000);
+};
+
+const clean = () => {
+  input.value = "";
 };
 
 function showCard() {
-  if (input.value === "") {
-    alert("Uzupełnij pole wyboru");
-  } else {
-    checkInput();
-  }
+  sampleTiles.style.display = "none";
+  searching.style.display = "none";
+  dogInfo.style.display = "flex";
+  completeData(chosenBreed);
 }
 
+const checkInput = () => {
+  if (input.value === "") {
+    const searchingInfo = document.querySelector(".searching-info");
+    const info = document.createElement("p");
+    info.classList.add("searching__answer");
+    searchingInfo.append(info);
+    info.textContent = "Enter your dog's breed";
 
-// do checkinput użyć filter lub map 
+    setTimeout(() => {
+      info.remove();
+      clean();
+    }, 2000);
+  } else {
+    const breed = breedArray.find((el) => el.name === input.value);
+    if (!breed) {
+      const searchingInfo = document.querySelector(".searching-info");
+      const info = document.createElement("p");
+      info.classList.add("searching__answer");
+      searchingInfo.append(info);
+      info.textContent = "There is no dog breed listed in our catalogue";
+
+      setTimeout(() => {
+        info.remove();
+        clean();
+      }, 2000);
+    } else if (breed) {
+      chosenBreed = breed;
+      showCard();
+      clean();
+    }
+  }
+};
+
+const completeData = (chosenBreed) => {
+  const breedName = document.querySelector(".breedName");
+  const breedImg = document.querySelector(".breedImage__img");
+  const breedFor = document.querySelector(".for");
+  const breedGroup = document.querySelector(".group");
+  const lifeSpan = document.querySelector(".life");
+  const temperament = document.querySelector(".temperament__list");
+
+  let temperamentArray = chosenBreed.temperament.split(",");
+
+  breedName.textContent = chosenBreed.name;
+  breedImg.src = chosenBreed.image.url;
+  breedFor.textContent = chosenBreed.bred_for;
+  breedGroup.textContent = chosenBreed.breed_group;
+  lifeSpan.textContent = chosenBreed.life_span;
+
+  temperamentArray.forEach((element) => {
+    const li = document.createElement("li");
+    li.classList.add("list");
+    li.innerHTML =
+      `<i class="fa-solid fa-paw" style="color: #863746"></i> ` + element;
+    temperament.append(li);
+  });
+};

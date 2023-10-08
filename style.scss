@@ -1,3 +1,5 @@
+@use "./_mixin" as mix;
+
 *,
 *::after,
 *::before {
@@ -65,37 +67,27 @@ header {
     text-align: center;
     border-radius: 15px;
   }
+  &__answer {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: #f2ad8a;
+  }
   &__submit {
-    position: relative;
     width: 100px;
     height: 40px;
-    padding: 5px;
     margin: 0 10px;
-    border-radius: 15px;
-    font-size: 15px;
-    font-weight: 600;
-    text-transform: uppercase;
-    background-color: #e6946a;
-    color: rgb(31, 14, 4);
-    border: none;
-    overflow: hidden;
-    cursor: pointer;
-
+    @include mix.button;
     &:focus {
       outline: none;
     }
   }
-
-  &__circle {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background-color: #fff;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    animation: zoom 0.3s;
-  }
 }
+
+.circle {
+  @include mix.circle;
+}
+
 @keyframes zoom {
   to {
     transform: translate(-50%, -50%) scale(2);
@@ -119,17 +111,21 @@ header {
   cursor: pointer;
 }
 
-.info{
-  background-color: #ffd7ab;
-  height: 100vh;
-  display: flex;
+.info {
+  background-color: rgb(255, 215, 171);
+
+  display: none;
   flex-direction: column;
   align-items: center;
 
-
-
-
-  &__card{
+  &__back {
+    @include mix.button;
+    margin: 30px auto;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+  }
+  &__card {
     display: flex;
     width: 40vw;
     flex-direction: column;
@@ -141,50 +137,65 @@ header {
     margin-top: 100px;
     overflow: hidden;
     font-size: 40px;
+    text-transform: uppercase;
 
-    .breed, .breedFor, .breedGroup, .lifeSpan, .temperament{
+    .breed,
+    .breedFor,
+    .breedGroup,
+    .lifeSpan,
+    .temperament {
       padding: 10px;
       color: rgb(24, 10, 2);
     }
-   
 
-    .breed{
+    p,
+    .list {
+      text-transform: lowercase;
+    }
+    .list {
+      margin-bottom: 15px;
+    }
+    .temperament__list {
+      margin-top: 15px;
+      list-style: none;
+    }
+
+    .breedName {
       width: 100%;
       padding: 10px;
-      margin-bottom: 10px;
-      background-color:#5a281e;
-      color:#f2ad8a;
+      background-color: #5a281e;
+      color: #f2ad8a;
       font-size: 50px;
+      text-transform: uppercase;
     }
 
-    .breedImg{
-      width: 300px;
-      height: 300px;
-
-    }
-
-    .breedFor{
+    .breedImage {
       width: 100%;
-      background-color:#863746;
+      
+      height: 400px;
+
+      &__img {
+        object-fit: fill;
+        width: 100%;
+        height: 100%;
+      }
     }
-    .breedGroup{
+
+    .breedFor {
+      width: 100%;
+      background-color: #863746;
+    }
+    .breedGroup {
       width: 100%;
       background-color: #b8555b;
     }
-    .lifeSpan{
+    .lifeSpan {
       width: 100%;
-      background-color:#f18177 ;
+      background-color: #f18177;
     }
-    .temperament{
+    .temperament {
       width: 100%;
       background-color: #f2ad8a;
     }
-
-  
-
-
-
-    
   }
-
 }
