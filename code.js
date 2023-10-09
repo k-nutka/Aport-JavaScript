@@ -17,7 +17,7 @@ const dogInfo = document.querySelector(".info");
 const searching = document.querySelector(".searching");
 
 let breedArray = [];
-let chosenBreed;
+let breed;
 
 backBtn.addEventListener("click", (e) => {
   window.location.reload();
@@ -47,14 +47,14 @@ async function getDogs() {
       option.classList.add("dog-name");
       searchList.appendChild(option);
       option.textContent = element.name;
-      const ImageURL = [element.image.url, element.id];
+      const ImageURL = [element.image.url, element.name];
       dogImages.push(ImageURL);
     });
 
     dogImages.forEach((dogImage) => {
       const image = document.createElement("img");
       image.classList.add("dog-image");
-      image.setAttribute("id", dogImage[1]);
+      image.setAttribute("name", dogImage[1]);
       image.src = dogImage[0];
       sampleTiles.append(image);
     });
@@ -63,9 +63,10 @@ async function getDogs() {
 
     samples.forEach((sample) => {
       sample.addEventListener("click", () => {
-        let sampleId = sample.getAttribute("id");
-        let clikedBreed = breedArray.find((el) => el.id === Number(sampleId));
-        chosenBreed = clikedBreed;
+        let sampleName = sample.getAttribute("name");
+        breed = sampleName
+        
+     
         showCard();
       });
     });
@@ -102,7 +103,7 @@ function showCard() {
   sampleTiles.style.display = "none";
   searching.style.display = "none";
   dogInfo.style.display = "flex";
-  completeData(chosenBreed);
+  completeData(breed);
 }
 
 const checkInput = () => {
@@ -118,8 +119,9 @@ const checkInput = () => {
       clean();
     }, 2000);
   } else {
-    const breed = breedArray.find((el) => el.name === input.value);
-    if (!breed) {
+    
+    let result  = (breedArray.some(el => el.name === input.value));
+    if (!result) {
       const searchingInfo = document.querySelector(".searching-info");
       const info = document.createElement("p");
       info.classList.add("searching__answer");
@@ -130,15 +132,16 @@ const checkInput = () => {
         info.remove();
         clean();
       }, 2000);
-    } else if (breed) {
-      chosenBreed = breed;
+    } else if (result) {
+      breed = input.value;
       showCard();
       clean();
     }
   }
 };
 
-const completeData = (chosenBreed) => {
+const completeData = (breed) => {
+  let chosenBreed = breedArray.find(el=>el.name === breed)
   const breedName = document.querySelector(".breedName");
   const breedImg = document.querySelector(".breedImage__img");
   const breedFor = document.querySelector(".for");
